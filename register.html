@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register – IntelliVerify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f4f6f9; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:30px 20px; }
+        .auth-container { display:flex; max-width:1000px; width:100%; background:#fff; border-radius:24px; box-shadow:0 20px 60px rgba(0,0,0,0.08); overflow:hidden; }
+        .auth-left { flex:1; background:#0d6efd; padding:50px 40px; color:#fff; display:flex; flex-direction:column; justify-content:center; }
+        .auth-left .logo { font-size:2.2rem; font-weight:700; margin-bottom:20px; }
+        .auth-left .logo i { margin-right:12px; }
+        .auth-left h2 { font-size:2rem; font-weight:700; margin-bottom:15px; }
+        .auth-left p { opacity:0.85; line-height:1.7; font-size:1.05rem; }
+        .auth-left .features-list { margin-top:25px; list-style:none; }
+        .auth-left .features-list li { margin-bottom:12px; display:flex; align-items:center; gap:12px; }
+        .auth-left .features-list li i { font-size:1.2rem; }
+
+        .auth-right { flex:1.2; padding:40px 35px; display:flex; flex-direction:column; justify-content:center; }
+        .auth-right h3 { font-size:1.8rem; font-weight:700; margin-bottom:5px; color:#0b1320; }
+        .auth-right .sub { color:#6c757d; margin-bottom:25px; font-size:0.95rem; }
+        .form-row { display:flex; gap:15px; flex-wrap:wrap; }
+        .form-row .form-group { flex:1 1 45%; }
+        .form-group { margin-bottom:18px; }
+        .form-group label { display:block; font-weight:500; margin-bottom:5px; font-size:0.9rem; }
+        .form-group input, .form-group select {
+            width:100%; padding:12px 16px; border:2px solid #dee2e6; border-radius:12px;
+            font-family:'Poppins',sans-serif; font-size:0.95rem; background:#f8fafc; transition:border 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus { border-color:#0d6efd; outline:none; background:#fff; }
+        .form-group input:disabled { opacity:0.6; cursor:not-allowed; }
+        .form-group .hint { font-size:0.8rem; color:#6c757d; margin-top:4px; }
+        .btn-primary {
+            width:100%; padding:14px; background:#0d6efd; color:#fff; border:none; border-radius:12px;
+            font-size:1.1rem; font-weight:600; cursor:pointer; transition:all 0.3s;
+            display:flex; align-items:center; justify-content:center; gap:10px;
+        }
+        .btn-primary:hover:not(:disabled) { background:#0b5ed7; transform:translateY(-2px); box-shadow:0 8px 25px rgba(13,110,253,0.3); }
+        .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
+        .auth-footer { text-align:center; margin-top:20px; color:#6c757d; font-size:0.95rem; }
+        .auth-footer a { color:#0d6efd; font-weight:600; }
+        .auth-footer a:hover { text-decoration:underline; }
+        .alert { padding:12px 16px; border-radius:10px; margin-bottom:20px; display:none; }
+        .alert-danger { background:#f8d7da; color:#842029; border:1px solid #f5c2c7; }
+        .alert-success { background:#d1e7dd; color:#0f5132; border:1px solid #badbcc; }
+        .terms { display:flex; align-items:flex-start; gap:10px; margin:15px 0 20px; font-size:0.9rem; }
+        .terms input { margin-top:3px; }
+        .terms a { color:#0d6efd; font-weight:500; }
+        .spinner { display:inline-block; width:20px; height:20px; border:3px solid rgba(255,255,255,0.3); border-radius:50%; border-top-color:#fff; animation:spin 0.8s ease-in-out infinite; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+
+        @media (max-width:768px) {
+            .auth-container { flex-direction:column; }
+            .auth-left { padding:30px 25px; text-align:center; }
+            .auth-left .features-list { text-align:left; }
+            .auth-right { padding:25px; }
+            .form-row .form-group { flex:1 1 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-left">
+        <div class="logo"><i class="fas fa-shield-alt"></i> IntelliVerify</div>
+        <h2>Create Account</h2>
+        <p>Join the intelligent academic platform. Register as a student and start your project journey.</p>
+        <ul class="features-list">
+            <li><i class="fas fa-check-circle"></i> Submit project topics</li>
+            <li><i class="fas fa-check-circle"></i> Instant plagiarism check</li>
+            <li><i class="fas fa-check-circle"></i> Track approvals in real-time</li>
+        </ul>
+    </div>
+
+    <div class="auth-right">
+        <h3>Student Registration</h3>
+        <p class="sub">Fill in your details to create your IntelliVerify account.</p>
+
+        <div id="alertBox" class="alert" style="display:none;"></div>
+
+        <form id="registerForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" placeholder="John" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" placeholder="Doe" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="middleName">Middle Name</label>
+                <input type="text" id="middleName" placeholder="Adam (optional)" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="john.doe@university.edu" required />
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="matric">Matric Number *</label>
+                    <input type="text" id="matric" placeholder="U21CS1001" required />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+234 800 000 0000" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="faculty">Faculty *</label>
+                    <select id="faculty" required>
+                        <option value="">Select Faculty</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="science">Science</option>
+                        <option value="arts">Arts &amp; Humanities</option>
+                        <option value="social_sciences">Social Sciences</option>
+                        <option value="management">Management Sciences</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department *</label>
+                    <select id="department" required>
+                        <option value="">Select Department</option>
+                        <option value="computer_science">Computer Science</option>
+                        <option value="software_engineering">Software Engineering</option>
+                        <option value="electrical">Electrical Engineering</option>
+                        <option value="mathematics">Mathematics</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="level">Level *</label>
+                <select id="level" required>
+                    <option value="">Select Level</option>
+                    <option value="100">100 Level</option>
+                    <option value="200">200 Level</option>
+                    <option value="300">300 Level</option>
+                    <option value="400">400 Level</option>
+                    <option value="500">500 Level</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" placeholder="Min 8 chars with uppercase, lowercase, number &amp; symbol" required />
+                <div class="hint">Must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character.</div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password *</label>
+                <input type="password" id="confirmPassword" placeholder="Re-enter password" required />
+            </div>
+            <div class="terms">
+                <input type="checkbox" id="terms" required />
+                <label for="terms">I agree to the <a href="terms.html">Terms &amp; Conditions</a> and <a href="privacy.html">Privacy Policy</a>.</label>
+            </div>
+            <button type="submit" class="btn-primary" id="registerBtn">
+                <i class="fas fa-user-plus"></i> Create Account
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Already have an account? <a href="login.html">Login here</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/auth.js"></script>
+
+<script>
+    (function() {
+        const form = document.getElementById('registerForm');
+        const alertBox = document.getElementById('alertBox');
+        const registerBtn = document.getElementById('registerBtn');
+
+        // Check if already logged in
+        window.getCurrentUser().then(({ user }) => {
+            if (user) {
+                // Redirect to appropriate dashboard if already logged in
+                window.getUserRole(user.id).then(role => {
+                    window.redirectToDashboard(role, window.location.pathname);
+                });
+            }
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Reset alert
+            alertBox.style.display = 'none';
+            alertBox.className = 'alert';
+
+            // Gather data
+            const firstName = document.getElementById('firstName').value.trim();
+            const middleName = document.getElementById('middleName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const matric = document.getElementById('matric').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const faculty = document.getElementById('faculty').value;
+            const department = document.getElementById('department').value;
+            const level = document.getElementById('level').value;
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            const termsChecked = document.getElementById('terms').checked;
+
+            // --- Frontend Validation ---
+            if (!firstName || !lastName || !email || !matric || !faculty || !department || !level || !password) {
+                showAlert('All required fields (*) must be filled.', 'danger');
+                return;
+            }
+            if (!window.isValidEmail(email)) {
+                showAlert('Please enter a valid email address.', 'danger');
+                return;
+            }
+            if (phone && !window.isValidPhone(phone)) {
+                showAlert('Please enter a valid phone number (e.g., +2348000000000 or 08000000000).', 'danger');
+                return;
+            }
+            if (password !== confirm) {
+                showAlert('Passwords do not match.', 'danger');
+                return;
+            }
+            const passCheck = window.isStrongPassword(password);
+            if (!passCheck.valid) {
+                showAlert(passCheck.message, 'danger');
+                return;
+            }
+            if (!termsChecked) {
+                showAlert('You must agree to the Terms &amp; Conditions.', 'danger');
+                return;
+            }
+
+            // Show loading state
+            registerBtn.disabled = true;
+            registerBtn.innerHTML = '<span class="spinner"></span> Creating Account...';
+
+            try {
+                const userData = {
+                    firstName,
+                    middleName,
+                    lastName,
+                    email,
+                    matricNumber: matric,
+                    phone,
+                    facultyId: faculty, // Will map to ID later; stored as string for now
+                    departmentId: department,
+                    level,
+                    password,
+                };
+
+                const { user, error } = await window.registerUser(userData);
+                if (error) {
+                    showAlert(error.message || 'Registration failed. Please try again.', 'danger');
+                    registerBtn.disabled = false;
+                    registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                    return;
+                }
+                if (user) {
+                    showAlert('Registration successful! Redirecting to login...', 'success');
+                    registerBtn.innerHTML = '<i class="fas fa-check"></i> Success!';
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1500);
+                }
+            } catch (err) {
+                showAlert('An unexpected error occurred. Please try again.', 'danger');
+                registerBtn.disabled = false;
+                registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                console.error(err);
+            }
+        });
+
+        function showAlert(message, type) {
+            alertBox.style.display = 'block';
+            alertBox.className = 'alert alert-' + type;
+            alertBox.textContent = message;
+        }
+    })();
+</script>
+
+</body>
+</html>

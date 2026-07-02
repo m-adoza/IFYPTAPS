@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact – IntelliVerify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f4f6f9; color:#212529; line-height:1.6; }
+        a { text-decoration:none; color:inherit; }
+        ul { list-style:none; }
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+        .navbar {
+            background:#fff; padding:18px 0; box-shadow:0 2px 10px rgba(0,0,0,0.05);
+            position:sticky; top:0; z-index:1000;
+        }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+        .logo { display:flex; align-items:center; gap:10px; font-size:1.6rem; font-weight:700; color:#0d6efd; }
+        .logo i { font-size:2rem; }
+        .nav-links { display:flex; align-items:center; gap:30px; font-weight:500; }
+        .nav-links a:hover { color:#0d6efd; }
+        .nav-links .btn { padding:8px 22px; border-radius:30px; font-weight:600; font-size:0.9rem; transition:all 0.3s; }
+        .btn-outline { background:transparent; color:#0d6efd; border:2px solid #0d6efd; }
+        .btn-outline:hover { background:#0d6efd; color:#fff; }
+        .btn-primary { background:#0d6efd; color:#fff; border:none; }
+        .btn-primary:hover { background:#0b5ed7; transform:translateY(-2px); }
+        .menu-toggle { display:none; font-size:1.8rem; cursor:pointer; color:#0d6efd; }
+
+        .page-hero { padding:60px 0 70px; background:#fff; text-align:center; }
+        .page-hero h1 { font-size:2.8rem; font-weight:800; margin-bottom:15px; }
+        .page-hero h1 span { color:#0d6efd; }
+        .page-hero p { color:#6c757d; max-width:600px; margin:0 auto; font-size:1.15rem; }
+
+        .contact-section { padding:60px 0; }
+        .contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:50px; align-items:start; }
+        .contact-info { background:#fff; padding:40px; border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,0.03); border:1px solid #e9edf4; }
+        .contact-info h3 { font-size:1.5rem; margin-bottom:20px; }
+        .contact-info .info-item { display:flex; gap:15px; margin-bottom:25px; align-items:flex-start; }
+        .contact-info .info-item i { font-size:1.6rem; color:#0d6efd; width:30px; margin-top:4px; }
+        .contact-info .info-item div h4 { font-weight:600; font-size:1.05rem; }
+        .contact-info .info-item div p { color:#6c757d; }
+
+        .contact-form { background:#fff; padding:40px; border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,0.03); border:1px solid #e9edf4; }
+        .contact-form h3 { font-size:1.5rem; margin-bottom:8px; }
+        .contact-form .sub { color:#6c757d; margin-bottom:25px; }
+        .form-group { margin-bottom:18px; }
+        .form-group label { display:block; font-weight:500; margin-bottom:5px; font-size:0.95rem; }
+        .form-group input, .form-group textarea {
+            width:100%; padding:12px 16px; border:2px solid #dee2e6; border-radius:12px;
+            font-family:'Poppins',sans-serif; font-size:1rem; background:#f8fafc; transition:border 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color:#0d6efd; outline:none; background:#fff; }
+        .form-group textarea { resize:vertical; min-height:130px; }
+        .btn-submit { width:100%; padding:14px; background:#0d6efd; color:#fff; border:none; border-radius:12px; font-size:1.1rem; font-weight:600; cursor:pointer; transition:all 0.3s; }
+        .btn-submit:hover { background:#0b5ed7; transform:translateY(-2px); box-shadow:0 8px 25px rgba(13,110,253,0.3); }
+        .alert { padding:12px 16px; border-radius:10px; margin-bottom:20px; display:none; }
+        .alert-success { background:#d1e7dd; color:#0f5132; border:1px solid #badbcc; }
+        .alert-danger { background:#f8d7da; color:#842029; border:1px solid #f5c2c7; }
+
+        .footer { background:#0b1320; border-top:1px solid #1c2a3a; padding:40px 0 20px; color:#adb5bd; }
+        .footer .container { display:flex; flex-wrap:wrap; justify-content:space-between; gap:30px; }
+        .footer-col h4 { color:#fff; margin-bottom:15px; font-weight:600; }
+        .footer-col p, .footer-col a { color:#adb5bd; font-size:0.95rem; line-height:2; }
+        .footer-col a:hover { color:#0d6efd; }
+        .footer-bottom { text-align:center; padding-top:30px; border-top:1px solid #1c2a3a; margin-top:30px; font-size:0.9rem; color:#6c757d; }
+
+        @media (max-width:992px) {
+            .contact-grid { grid-template-columns:1fr; }
+        }
+        @media (max-width:768px) {
+            .menu-toggle { display:block; }
+            .nav-links { display:none; flex-direction:column; width:100%; gap:15px; padding:20px 0; border-top:1px solid #dee2e6; margin-top:15px; }
+            .nav-links.active { display:flex; }
+            .page-hero h1 { font-size:2.2rem; }
+            .contact-info, .contact-form { padding:25px; }
+            .footer .container { flex-direction:column; text-align:center; }
+        }
+        @media (max-width:480px) { .page-hero h1 { font-size:1.8rem; } }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i> IntelliVerify</a>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" style="color:#0d6efd;">Contact</a></li>
+            <li><a href="login.html" class="btn btn-outline">Login</a></li>
+            <li><a href="register.html" class="btn btn-primary">Register</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="page-hero">
+    <div class="container">
+        <h1>Get in <span>Touch</span></h1>
+        <p>Have questions, feedback, or need support? Reach out to us and we'll get back to you promptly.</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Left: Contact Info -->
+            <div class="contact-info">
+                <h3><i class="fas fa-address-card" style="color:#0d6efd;"></i> Contact Information</h3>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>support@intelliverify.edu</p>
+                        <p>admin@intelliverify.edu</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+234 706 214 1728</p>
+                        <p>+234 800 000 0000 (Support)</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Address</h4>
+                        <p>IntelliVerify Campus,</p>
+                        <p>Computer Science Department,</p>
+                        <p>University of Technology,</p>
+                        <p>Nigeria.</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Support Hours</h4>
+                        <p>Monday – Friday: 8:00 AM – 6:00 PM (WAT)</p>
+                        <p>Saturday: 9:00 AM – 2:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <p class="sub">We'd love to hear from you. Fill in the form and we'll respond as soon as possible.</p>
+                <div id="alertBox" class="alert" style="display:none;"></div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="John Doe" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="john.doe@university.edu" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Topic approval issue" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Describe your query in detail..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-col">
+            <h4>IntelliVerify</h4>
+            <p>Intelligent Final Year Project Topic Approval and Plagiarism Detection System</p>
+            <p><i class="fas fa-envelope"></i> support@intelliverify.edu</p>
+            <p><i class="fas fa-phone"></i> +234 706 214 1728</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a><br />
+            <a href="about.html">About</a><br />
+            <a href="contact.html">Contact</a><br />
+            <a href="privacy.html">Privacy Policy</a><br />
+            <a href="terms.html">Terms &amp; Conditions</a>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a><br />
+            <a href="#"><i class="fab fa-twitter"></i> Twitter</a><br />
+            <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a><br />
+            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 IntelliVerify. All rights reserved. | Built with <i class="fas fa-heart" style="color:#0d6efd;"></i> for academic excellence.</div>
+</footer>
+
+<script>
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+    document.querySelectorAll('#navLinks a').forEach(link => {
+        link.addEventListener('click', function() {
+            document.getElementById('navLinks').classList.remove('active');
+        });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const alertBox = document.getElementById('alertBox');
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !subject || !message) {
+            alertBox.style.display = 'block';
+            alertBox.className = 'alert alert-danger';
+            alertBox.textContent = 'All fields are required. Please complete the form.';
+            return;
+        }
+
+        alertBox.style.display = 'block';
+        alertBox.className = 'alert alert-success';
+        alertBox.textContent = 'Your message has been sent successfully! We will get back to you shortly.';
+        this.reset();
+    });
+</script>
+
+</body>
+</html>

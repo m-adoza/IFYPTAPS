@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About – IntelliVerify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f6f9;
+            color: #212529;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ----- NAVBAR (same as index) ----- */
+        .navbar {
+            background: #fff;
+            padding: 18px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0d6efd;
+        }
+        .logo i {
+            font-size: 2rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #0d6efd;
+        }
+        .nav-links .btn {
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #0d6efd;
+            border: 2px solid #0d6efd;
+        }
+        .btn-outline:hover {
+            background: #0d6efd;
+            color: #fff;
+        }
+        .btn-primary {
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #0b5ed7;
+            transform: translateY(-2px);
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0d6efd;
+        }
+
+        /* ----- HERO ----- */
+        .page-hero {
+            padding: 60px 0 70px;
+            background: #fff;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .page-hero h1 span {
+            color: #0d6efd;
+        }
+        .page-hero p {
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+        }
+
+        /* ----- SECTIONS ----- */
+        .section-pad {
+            padding: 70px 0;
+        }
+        .bg-light {
+            background: #f8fafc;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .section-title i {
+            color: #0d6efd;
+            margin-right: 12px;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .about-card {
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e9edf4;
+            transition: all 0.3s;
+        }
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+        .about-card i {
+            font-size: 2.5rem;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+        .about-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .about-card p {
+            color: #6c757d;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .tech-stack span {
+            background: #fff;
+            padding: 8px 20px;
+            border-radius: 40px;
+            border: 1px solid #dee2e6;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .tech-stack span i {
+            color: #0d6efd;
+            margin-right: 8px;
+        }
+
+        /* ----- FOOTER (same as index) ----- */
+        .footer {
+            background: #0b1320;
+            border-top: 1px solid #1c2a3a;
+            padding: 40px 0 20px;
+            color: #adb5bd;
+        }
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .footer-col p, .footer-col a {
+            color: #adb5bd;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+        .footer-col a:hover {
+            color: #0d6efd;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1c2a3a;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+                padding: 20px 0;
+                border-top: 1px solid #dee2e6;
+                margin-top: 15px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>IntelliVerify</span>
+        </a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" style="color:#0d6efd;">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn btn-outline">Login</a></li>
+            <li><a href="register.html" class="btn btn-primary">Register</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+    <div class="container">
+        <h1>About <span>IntelliVerify</span></h1>
+        <p>Empowering academic institutions with intelligent project topic management and plagiarism detection.</p>
+    </div>
+</section>
+
+<!-- ===== MISSION & VISION ===== -->
+<section class="section-pad bg-light">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Our Mission</h3>
+                <p>To simplify and secure the final year project approval process through intelligent automation, ensuring originality and academic integrity in higher education.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-eye"></i>
+                <h3>Our Vision</h3>
+                <p>To become the leading academic project management platform across universities, powered by AI and designed for the future of education.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-gem"></i>
+                <h3>Core Values</h3>
+                <p>Integrity, innovation, transparency, and excellence. We believe in using technology to uphold academic standards and empower students.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROBLEM & SOLUTION ===== -->
+<section class="section-pad">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-exclamation-triangle" style="color:#dc3545;"></i>
+                <h3>The Problem</h3>
+                <p>Many universities still rely on manual, paper-based processes for project topic approval. This leads to duplicated topics, slow reviews, lost records, and inconsistent supervision.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-check-circle" style="color:#198754;"></i>
+                <h3>The Solution</h3>
+                <p>IntelliVerify digitizes the entire workflow. Students submit topics online, supervisors review them, administrators approve them, and an intelligent engine checks for plagiarism in real-time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TECHNOLOGY ===== -->
+<section class="section-pad bg-light">
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-code"></i> Built with Modern Tech</h2>
+        <p style="color:#6c757d; max-width:700px;">IntelliVerify is built on a robust, scalable, and cloud-native architecture ready for future AI expansion.</p>
+        <div class="tech-stack">
+            <span><i class="fab fa-html5"></i> HTML5</span>
+            <span><i class="fab fa-css3-alt"></i> CSS3</span>
+            <span><i class="fab fa-js"></i> JavaScript (ES6)</span>
+            <span><i class="fas fa-database"></i> Supabase (PostgreSQL)</span>
+            <span><i class="fas fa-shield-alt"></i> Supabase Auth</span>
+            <span><i class="fas fa-cloud"></i> Supabase Storage</span>
+            <span><i class="fas fa-robot"></i> TF-IDF &amp; Cosine Similarity</span>
+            <span><i class="fab fa-github"></i> GitHub Pages</span>
+        </div>
+        <div style="margin-top:30px; background:#fff; padding:25px; border-radius:16px; border:1px solid #e9edf4;">
+            <h4 style="margin-bottom:10px;"><i class="fas fa-user-graduate"></i> Project Developer</h4>
+            <p style="color:#6c757d;"><strong>Muhammad Adam Adoza</strong> — A passionate software engineer dedicated to solving academic challenges through innovative technology. IntelliVerify is developed as a final year university project with a vision to transform academic administration.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-col">
+            <h4>IntelliVerify</h4>
+            <p>Intelligent Final Year Project Topic Approval and Plagiarism Detection System</p>
+            <p><i class="fas fa-envelope"></i> support@intelliverify.edu</p>
+            <p><i class="fas fa-phone"></i> +234 706 214 1728</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a><br />
+            <a href="about.html">About</a><br />
+            <a href="contact.html">Contact</a><br />
+            <a href="privacy.html">Privacy Policy</a><br />
+            <a href="terms.html">Terms &amp; Conditions</a>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a><br />
+            <a href="#"><i class="fab fa-twitter"></i> Twitter</a><br />
+            <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a><br />
+            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 IntelliVerify. All rights reserved. | Built with <i class="fas fa-heart" style="color:#0d6efd;"></i> for academic excellence.
+    </div>
+</footer>
+
+<script>
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+    document.querySelectorAll('#navLinks a').forEach(link => {
+        link.addEventListener('click', function() {
+            document.getElementById('navLinks').classList.remove('active');
+        });
+    });
+</script>
+
+</body>
+</html>
